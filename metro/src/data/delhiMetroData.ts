@@ -7,6 +7,7 @@ const metroData: MetroData = {
       name: { en: 'Red Line', hi: 'लाल लाइन' },
       color: '#d32f2f',
       stations: ['R1', 'R2', 'I1', 'R3', 'R4'],
+
     },
     {
       id: 'blue',
@@ -25,6 +26,7 @@ const metroData: MetroData = {
       name: { en: 'Rapid Metro', hi: 'रैपिड मेट्रो' },
       color: '#00a650',
       stations: ['G1', 'G2', 'G3'],
+
     },
   ],
   stations: [
@@ -154,6 +156,7 @@ const metroData: MetroData = {
       timings: { firstTrain: { en: '06:04', hi: '06:04' }, lastTrain: { en: '21:56', hi: '21:56' } },
       latitude: 28.477, longitude: 77.090,
     },
+
   ],
   fareRules: {
     baseFare: 10,
