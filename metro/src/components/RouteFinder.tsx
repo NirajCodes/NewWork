@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StationAutocomplete } from './StationAutocomplete';
 import type { StationOption } from './StationAutocomplete';
+
 import { useApp, metroData } from '../contexts/AppContext';
 import type { StationDetail } from "../types";
 import type { RouteInfo, FareResult, TicketSuggestion } from "../types";
@@ -41,6 +42,7 @@ export const RouteFinder: React.FC = () => {
       <div className="grid md:grid-cols-2 gap-4">
         <StationAutocomplete onChange={setSource} stations={stationOptions} />
         <StationAutocomplete onChange={setDest} stations={stationOptions} />
+
       </div>
       <button className="bg-blue-500 text-white px-4 py-2" onClick={handleSubmit}>
         {language === 'en' ? 'Find Route' : 'मार्ग खोजें'}
@@ -70,6 +72,7 @@ export const RouteFinder: React.FC = () => {
               </span>
             ))}
           </div>
+
           <p>
             {language === 'en' ? 'Stops:' : 'स्टॉप:'} {result.route.totalStops}
           </p>

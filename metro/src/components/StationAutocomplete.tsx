@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { useApp } from '../contexts/AppContext';
 
@@ -99,6 +100,7 @@ export const StationAutocomplete: React.FC<Props> = ({ onChange, stations }) => 
             >
               <span className="inline-block w-3 h-3 rounded-full" style={{backgroundColor: lineColors[st.line] || '#999'}} />
               {st.name}
+
             </li>
           ))}
         </ul>
