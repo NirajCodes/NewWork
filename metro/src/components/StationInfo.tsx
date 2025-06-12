@@ -19,18 +19,18 @@ export const StationInfo: React.FC = () => {
     line: s.line,
   }));
 
+
+  const station = metroData.stations.find(
+    s => slug(s.name.en) === selected
+  );
+
   const station = metroData.stations.find(s => s.id === selected);
+
   const extra = dmrcStations.find(s => slug(s.name) === selected);
 
   return (
     <div className="space-y-4">
       <StationAutocomplete onChange={setSelected} stations={stationOptions} />
-
-  const station = metroData.stations.find(s => s.id === selected);
-
-  return (
-    <div className="space-y-4">
-      <StationAutocomplete onChange={setSelected} />
 
       {station && (
         <div className="border p-4 rounded">
@@ -42,14 +42,12 @@ export const StationInfo: React.FC = () => {
             {station.lines.map(id => {
               const line = metroData.lines.find(l => l.id === id)!;
               return (
-                <li key={id} className="px-2 py-1 text-white" style={{backgroundColor: line.color}}>
+
                   {line.name[language]}
                 </li>
               );
             })}
           </ul>
-
-          <p>{language === 'en' ? 'Lines' : 'लाइन'}: {station.lines.join(', ')}</p>
 
           <p>{language === 'en' ? 'Facilities' : 'सुविधाएँ'}:</p>
           <ul className="list-disc ml-5">
@@ -92,14 +90,6 @@ export const StationInfo: React.FC = () => {
                 src={`https://maps.google.com/maps?q=${extra.lat},${extra.lng}&z=15&output=embed`}
               />
             </div>
-
-            <a
-              className="text-blue-500"
-              href={`https://maps.google.com/?q=${station.latitude},${station.longitude}`}
-              target="_blank" rel="noopener noreferrer"
-            >
-              Google Maps
-            </a>
 
           )}
         </div>

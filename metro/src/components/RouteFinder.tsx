@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { StationAutocomplete } from './StationAutocomplete';
 import type { StationOption } from './StationAutocomplete';
 
 import { useApp, metroData } from '../contexts/AppContext';
