@@ -5,7 +5,9 @@ import { useApp, metroData, dmrcStations } from '../contexts/AppContext';
 
 const slug = (name: string) => name.toLowerCase().replace(/[^a-z0-9]+/g, '');
 
-import { useApp, metroData } from '../contexts/AppContext';
+  const station = metroData.stations.find(
+    s => slug(s.name.en) === selected
+  );
 
 
 export const StationInfo: React.FC = () => {
