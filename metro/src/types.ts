@@ -69,3 +69,10 @@ export interface TicketSuggestion {
   details: string;
   monthlySavings?: number;
 }
+
+export interface SimpleStation {
+  name: string;
+  line: string;
+  lat: number | null;
+  lng: number | null;
+}
