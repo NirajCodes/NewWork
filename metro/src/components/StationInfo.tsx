@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StationAutocomplete } from './StationAutocomplete';
+import type { StationOption } from './StationAutocomplete';
 import { useApp, metroData, dmrcStations } from '../contexts/AppContext';
 
 const slug = (name: string) => name.toLowerCase().replace(/[^a-z0-9]+/g, '');
@@ -8,12 +9,18 @@ export const StationInfo: React.FC = () => {
   const { language } = useApp();
   const [selected, setSelected] = useState('');
 
+  const stationOptions: StationOption[] = dmrcStations.map(s => ({
+    id: slug(s.name),
+    name: s.name,
+    line: s.line,
+  }));
+
   const station = metroData.stations.find(s => s.id === selected);
   const extra = dmrcStations.find(s => slug(s.name) === selected);
 
   return (
     <div className="space-y-4">
-      <StationAutocomplete onChange={setSelected} />
+      <StationAutocomplete onChange={setSelected} stations={stationOptions} />
       {station && (
         <div className="border p-4 rounded">
           <h2 className="font-bold text-lg mb-2">{station.name[language]}</h2>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StationAutocomplete } from './StationAutocomplete';
+import type { StationOption } from './StationAutocomplete';
 import { useApp, metroData } from '../contexts/AppContext';
 import type { StationDetail } from "../types";
 import type { RouteInfo, FareResult, TicketSuggestion } from "../types";
@@ -15,6 +16,15 @@ export const RouteFinder: React.FC = () => {
   const [dest, setDest] = useState('');
   const [result, setResult] = useState<RouteResult | null>(null);
 
+  const stationOptions: StationOption[] = metroData.stations.map(s => {
+    const line = metroData.lines.find(l => l.id === s.lines[0]);
+    return {
+      id: s.id,
+      name: s.name[language],
+      line: line ? line.name.en : '',
+    };
+  });
+
   const handleSubmit = () => {
     const route = findRoute(source, dest, metroData);
     if (route) {
@@ -29,8 +39,8 @@ export const RouteFinder: React.FC = () => {
   return (
     <div className="space-y-4">
       <div className="grid md:grid-cols-2 gap-4">
-        <StationAutocomplete onChange={setSource} />
-        <StationAutocomplete onChange={setDest} />
+        <StationAutocomplete onChange={setSource} stations={stationOptions} />
+        <StationAutocomplete onChange={setDest} stations={stationOptions} />
       </div>
       <button className="bg-blue-500 text-white px-4 py-2" onClick={handleSubmit}>
         {language === 'en' ? 'Find Route' : 'मार्ग खोजें'}
